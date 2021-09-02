@@ -211,6 +211,9 @@ a:hover {
     background: none;
     transform: none;
   }
+  .header .menu .item {
+    transform: initial;
+  }
 
   .header .menu .link {
     /* Important when you resize the window with the mouse... and it does not happen with a phone... */
