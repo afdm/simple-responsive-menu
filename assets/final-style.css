@@ -29,7 +29,7 @@
 body {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  /* 375 x 812 the font size wil be ~ 16.125px*/
+  /* 375 x 812 the font size will be ~ 16.125px*/
   font-size: min(4.3vw, 18px);
 
   color: var(--dark);
