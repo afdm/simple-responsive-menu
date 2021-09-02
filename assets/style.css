@@ -200,17 +200,16 @@ a:hover {
   .header .menu {
     position: initial;
     text-align: initial;
-    padding-top: initial;
-    padding-right: initial;
+    padding: initial;
     height: initial;
     width: initial;
+    background: initial;
+    transform: initial;
 
     display: flex;
     gap: 0.8em;
-
-    background: none;
-    transform: none;
   }
+
   .header .menu .item {
     transform: initial;
   }
