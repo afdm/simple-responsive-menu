@@ -1,196 +1,229 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --primary : 169deg 53% 14%;
-    --dark: #131313;
-    --light: #fefefe;
+  --primary: 169deg 53% 14%;
+  --dark: #131313;
+  --light: #fefefe;
 
-    --header-container-height: 10vh;
-    --header-menu-right-margin: 25px;
+  --header-container-height: 10vh;
+  --header-menu-right-margin: 25px;
 
-    --font-size-normal : 1em;
-    --font-size-medium : 1.12em;
-    --font-size-large : 1.34em;
-    --font-size-xlarge : 1.7em;
-    --font-size-xxlarge : 2.1em;
-    --transition-time : 0.3s;
+  --font-size-normal: 1em;
+  --font-size-medium: 1.12em;
+  --font-size-large: 1.34em;
+  --font-size-xlarge: 1.7em;
+  --font-size-xxlarge: 2.1em;
+  --transition-time: 0.3s;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    /* 375 x 812 the font size wil be ~ 16.125px*/
-    font-size: min(4.3vw, 18px); 
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  /* 375 x 812 the font size wil be ~ 16.125px*/
+  font-size: min(4.3vw, 18px);
 
-    color: var(--dark);
-    background: var(--light);
+  color: var(--dark);
+  background: var(--light);
 
-    line-height: 1.4;
-    
+  line-height: 1.4;
 }
 
 h1 {
-    font-size: var(--font-size-xxlarge);
+  font-size: var(--font-size-xxlarge);
 }
 
 h2 {
-    font-size: var(--font-size-xlarge);
+  font-size: var(--font-size-xlarge);
 }
 
 h3 {
-    font-size: var(--font-size-large);
+  font-size: var(--font-size-large);
 }
 
 h4 {
-    font-size: var(--font-size-medium);
+  font-size: var(--font-size-medium);
 }
 
-h1, h2, h3, h4, p {
-    margin-bottom: 1em;
+h1,
+h2,
+h3,
+h4,
+p {
+  margin-bottom: 1em;
 }
 
 a {
-    text-underline-offset : .2em;
-    color: var(--dark);
+  text-underline-offset: 0.2em;
+  color: var(--dark);
 }
 
-a:hover {    
-    text-decoration-style: dotted;
+a:hover {
+  text-decoration-style: dotted;
 }
 
 .flex {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .container {
-    width: 80%;
-    max-width: 1440px;    
-    margin: 0 auto;    
+  width: 80%;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .header .container {
-    justify-content: space-between;
-    height: var(--header-container-height);
+  justify-content: space-between;
+  height: var(--header-container-height);
 }
 
 .brand-name {
-    font-size: var(--font-size-medium);
-    text-decoration-line: none;
-    font-weight: 700;
+  font-size: var(--font-size-medium);
+  text-decoration-line: none;
+  font-weight: 700;
 }
 
 .header {
-    box-shadow : 0 10px 38px hsl(var(--primary) / 15%);
+  box-shadow: 0 10px 38px hsl(var(--primary) / 15%);
 }
 
 .menu {
-    list-style: none;
+  list-style: none;
+  text-decoration: none;
 }
 
-.header .menu {
-    
-    text-align: right;
-    padding-top: var(--header-container-height);
-    padding-right: var(--header-menu-right-margin);
-
-    position: fixed;
-    top: 0;
-    right: 0;   
-
-    height: 100%;
-    width: 66vw;
-
-    background: hsl(var(--primary) / 95%) ;    
-    transform: translateX(100%);   
-}
-
-.header .menu.open {
-    transform: translateX(0);
-    transition: var(--transition-time) ease-out;
-    
-}
-
-.menu .link {    
-    text-decoration: none ;    
-    font-weight: 500;
-    font-size: var(--font-size-large);
-
-    color: var(--light);
+.menu .link {
+  text-decoration: none;
 }
 
 .menu .link:hover {
-    text-decoration : underline;    
-    text-decoration-style: dotted;
+  text-decoration: underline;
+  text-decoration-style: dotted;
 }
+
+.header .menu {
+  text-align: right;
+  padding-top: var(--header-container-height);
+  padding-right: var(--header-menu-right-margin);
+
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  height: 100%;
+  width: 66vw;
+
+  background: hsl(var(--primary) / 95%);
+  transform: translateX(100%);
+}
+
+/* Start : Menu animation */
+.header .menu.open {
+  transform: translateX(0);
+  transition: transform var(--transition-time) ease-out;
+}
+/* End : Menu animation */
+
+.header .menu .link {
+  font-weight: 500;
+}
+
+.header .menu.open .link {
+  color: var(--light);
+  font-size: var(--font-size-large);
+}
+
+/* Start : Item animation */
+.header .menu .item {
+  transform: translateX(100%);
+}
+
+.header .menu.open .item {
+  animation: mobileMenuFadeIn calc(var(--transition-time) * 2) forwards;
+}
+/* End : Item animation */
 
 .burger {
-    position: fixed;
-    right: var(--header-menu-right-margin);
+  position: fixed;
+  right: var(--header-menu-right-margin);
+  cursor: pointer;
 }
 
-
-.burger:hover {
-    cursor: pointer;
-}
-
-.burger .line {    
-    background : var(--dark);
-    width: 2em;
-    height: .18em;   
+.burger .line {
+  background: var(--dark);
+  width: 2em;
+  height: 0.18em;
 }
 
 .burger.open .line {
-    background : var(--light);
-    transition: calc(var(--transition-time) *2) ease-out;
+  background: var(--light);
+  transition: transform calc(var(--transition-time) * 2) ease-out;
 }
 
 .burger .line:nth-child(2) {
-    margin: 6px 0;
+  margin: 6px 0;
 }
 
+/* Start : Burger Animation */
 .burger.open .line:nth-child(1) {
-    transform: rotate(45deg) translate(10%, 5%);
+  transform: rotate(45deg) translate(10%, 5%);
 }
 
 .burger.open .line:nth-child(2) {
-    display: none;
+  display: none;
 }
 
 .burger.open .line:nth-child(3) {
-   transform: rotate(-45deg) translate(5%, 10%);
+  transform: rotate(-45deg) translate(5%, 10%);
 }
+/* End : Burger Animation */
 
 .content .container {
-    padding: var(--font-size-xxlarge) 0;
+  padding: var(--font-size-xxlarge) 0;
 }
 
-@media screen and (min-width:640px) {
-    .burger {
-        display: none;
-    }
+@media screen and (min-width: 640px) {
+  .burger {
+    display: none;
+  }
 
-    .header .menu {        
-        position: initial;        
-        text-align: initial;
-        padding-top: initial;
-        padding-right: initial; 
-        height: initial;
-        width: initial;
+  .header .menu {
+    position: initial;
+    text-align: initial;
+    padding-top: initial;
+    padding-right: initial;
+    height: initial;
+    width: initial;
 
-        display: flex;
-        gap : 10px;
-    
-        background: none; 
-        transform: none;
-    }    
+    display: flex;
+    gap: 0.8em;
 
-    .menu .link {
-        font-size: 1em;
-        color: var(--dark);
-    }
+    background: none;
+    transform: none;
+  }
+
+  .header .menu .link {
+    /* Important when you resize the window with the mouse... and it does not happen with a phone... */
+    font-size: 1em !important;
+    color: var(--dark) !important;
+  }
+}
+
+@keyframes mobileMenuFadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
