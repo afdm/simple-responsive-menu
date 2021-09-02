@@ -6,8 +6,8 @@
 
 :root {
   --primary: 169deg 53% 14%;
-  --dark: #131313;
-  --light: #fefefe;
+  --dark: hsl(169deg 53% 3%);
+  --light: hsl(169deg 53% 97%);
 
   --header-container-height: 10vh;
   --header-menu-right-margin: 25px;
