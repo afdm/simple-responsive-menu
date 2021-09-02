@@ -71,7 +71,7 @@ a:hover {
   text-decoration-style: dotted;
 }
 
-.flex {
+.flex-wrapper {
   display: flex;
   align-items: center;
 }
