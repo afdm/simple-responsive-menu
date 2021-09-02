@@ -111,11 +111,51 @@ a:hover {
   text-decoration-style: dotted;
 }
 
+.header .menu {
+  text-align: right;
+  padding-top: var(--header-container-height);
+  padding-right: var(--header-menu-right-margin);
+
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  height: 100%;
+  width: 66vw;
+
+  background: hsl(var(--primary) / 95%);
+  transform: translateX(100%);
+}
+
+/* Start : Menu animation */
+.header .menu.open {
+  transform: translateX(0);
+  transition: transform var(--transition-time) ease-out;
+}
+/* End : Menu animation */
+
 .header .menu .link {
   font-weight: 500;
 }
 
+.header .menu.open .link {
+  color: var(--light);
+  font-size: var(--font-size-large);
+}
+
+/* Start : Item animation */
+.header .menu .item {
+  transform: translateX(100%);
+}
+
+.header .menu.open .item {
+  animation: mobileMenuFadeIn calc(var(--transition-time) * 2) forwards;
+}
+/* End : Item animation */
+
 .burger {
+  position: fixed;
+  right: var(--header-menu-right-margin);
   cursor: pointer;
 }
 
@@ -125,10 +165,73 @@ a:hover {
   height: 0.18em;
 }
 
+.burger.open .line {
+  background: var(--light);
+  transition: transform calc(var(--transition-time) * 2) ease-out;
+}
+
 .burger .line:nth-child(2) {
   margin: 6px 0;
 }
 
+/* Start : Burger Animation */
+.burger.open .line:nth-child(1) {
+  transform: rotate(45deg) translate(10%, 5%);
+}
+
+.burger.open .line:nth-child(2) {
+  display: none;
+}
+
+.burger.open .line:nth-child(3) {
+  transform: rotate(-45deg) translate(5%, 10%);
+}
+/* End : Burger Animation */
+
 .content .container {
   padding: var(--font-size-xxlarge) 0;
+}
+
+@media screen and (min-width: 640px) {
+  .burger {
+    display: none;
+  }
+
+  .header .menu {
+    position: initial;
+    text-align: initial;
+    padding: initial;
+    height: initial;
+    width: initial;
+    background: initial;
+    transform: initial;
+
+    display: flex;
+    gap: 0.8em;
+  }
+
+  .header .menu .item {
+    transform: initial;
+  }
+
+  .header .menu .link {
+    /* Important when you resize the window with the mouse... and it does not happen with a phone... */
+    font-size: 1em !important;
+    color: var(--dark) !important;
+  }
+}
+
+@keyframes mobileMenuFadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

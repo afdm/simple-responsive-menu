@@ -115,6 +115,11 @@ a:hover {
   font-weight: 500;
 }
 
+.header .menu.open .link {
+  color: var(--light);
+  font-size: var(--font-size-large);
+}
+
 .burger {
   cursor: pointer;
 }
@@ -123,6 +128,11 @@ a:hover {
   background: var(--dark);
   width: 2em;
   height: 0.18em;
+}
+
+.burger.open .line {
+  background: var(--light);
+  /* transition: transform calc(var(--transition-time) * 2) ease-out; */
 }
 
 .burger .line:nth-child(2) {
