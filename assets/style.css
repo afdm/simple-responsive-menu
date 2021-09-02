@@ -22,6 +22,10 @@
   --transition-time: 0.3s;
 }
 
+::selection {
+  background-color: hsl(var(--primary) / 30%);
+}
+
 body {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
