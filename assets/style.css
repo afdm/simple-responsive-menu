@@ -12,7 +12,7 @@
   --light: hsl(169deg 53% 97%);
 
   --header-container-height: 10vh;
-  --header-menu-right-margin: 25px;
+  --container-margin: 25px;
 
   --font-size-normal: 1em;
   --font-size-medium: 1.12em;
@@ -29,7 +29,10 @@
 body {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  /* 375 x 812 the font size will be ~ 16.125px*/
+  /** 
+   * 375 x 812 the font size will be ~ 16.125px
+   * maybe the use of clamp() would be better
+   */
   font-size: min(4.3vw, 18px);
 
   color: var(--dark);
@@ -71,16 +74,13 @@ a:hover {
   text-decoration-style: dotted;
 }
 
-/* Le barre de navigation commence ici ! */
+.container {
+  padding: var(--container-margin);
+}
+
 .flex-wrapper {
   display: flex;
   align-items: center;
-}
-
-.container {
-  width: 80%;
-  max-width: 1440px;
-  margin: 0 auto;
 }
 
 .header .flex-wrapper {
@@ -112,11 +112,48 @@ a:hover {
   text-decoration-style: dotted;
 }
 
+.header .menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  height: 100vh;
+  width: 66vw;
+
+  text-align: right;
+  padding-top: var(--header-container-height);
+  padding-right: var(--container-margin);
+
+  background: hsl(var(--primary) / 95%);
+
+  transform: translateX(100%);
+}
+
+.header .menu.open {
+  transform: translateX(0);
+  transition: transform var(--transition-time) ease-out;
+}
+
 .header .menu .link {
   font-weight: 500;
 }
 
+.header .menu.open .link {
+  color: var(--light);
+  font-size: var(--font-size-large);
+}
+
+.header .menu .item {
+  transform: translateX(100%);
+}
+
+.header .menu.open .item {
+  animation: mobileMenuFadeIn calc(var(--transition-time) * 2) forwards;
+}
+
 .burger {
+  position: fixed;
+  right: var(--container-margin);
   cursor: pointer;
 }
 
@@ -130,6 +167,76 @@ a:hover {
   margin: 6px 0;
 }
 
+.burger.open .line {
+  background: var(--light);
+  transition: transform calc(var(--transition-time) * 2) ease-out;
+}
+
+.burger.open .line:nth-child(1) {
+  transform: rotate(45deg) translate(10%, 5%);
+}
+
+.burger.open .line:nth-child(2) {
+  display: none;
+}
+
+.burger.open .line:nth-child(3) {
+  transform: rotate(-45deg) translate(5%, 10%);
+}
+
 .content .container {
-  padding: var(--font-size-xxlarge) 0;
+  padding-top: var(--font-size-xxlarge);
+  padding-bottom: var(--font-size-xxlarge);
+}
+
+@media screen and (min-width: 640px) {
+  .burger {
+    display: none;
+  }
+
+  .header .menu {
+    position: initial;
+    text-align: initial;
+    padding: initial;
+    height: initial;
+    width: initial;
+    background: initial;
+    transform: initial;
+
+    display: flex;
+    gap: 0.8em;
+  }
+
+  .container {
+    width: 80%;
+    max-width: 1440px;
+    margin: 0 auto;
+
+    padding: initial;
+  }
+
+  .header .menu .item {
+    transform: initial;
+  }
+
+  /* Important when you resize the window with the mouse... and it does not happen with a phone so... */
+  .header .menu .link {
+    font-size: 1em !important;
+    color: var(--dark) !important;
+  }
+}
+
+@keyframes mobileMenuFadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
